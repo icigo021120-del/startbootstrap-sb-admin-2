@@ -22,6 +22,46 @@
 
 </head>
 
+<div>
+
+  <h3>Data Sensor Cuaca</h3>
+
+  <p id="cuaca">Memuat data...</p>
+
+</div>
+
+<skrip>
+
+  const apiKey = 'd62c8e1cb447e3440ebadce4e012417c';
+
+  const kota = 'Padang';
+
+
+
+  ambil(`https://api.openweathermap.org/data/2.5/cuaca?q=kota appid={apiKey}&units=metrik`)
+
+    .lalu(respons => respons.json())
+
+    .lalu(data => {
+
+      const suhu = data.main.temp;
+
+      const kelembaban = data.main.humidity;
+
+      dokumen.getElementById("cuaca").innerText =
+
+        `Suhu: suhu°C, Kelembapan:{kelembapan}%`;
+
+    })
+
+    .tangkap(kesalahan => {
+
+      document.getElementById("cuaca").innerText = "Gagal mengambil data.";
+
+    });
+
+</skrip>
+    
 <body id="page-top">
 
     <!-- Page Wrapper -->
